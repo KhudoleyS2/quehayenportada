@@ -5,6 +5,7 @@ Creando un scraper para poder leer cualquier url de cualquier periodico e intent
 
 
 #To Dos:
+    ->Error en los links de las noticias. Algunas llevan a paginas diferentes
     ->JS scrollreveal !!!!! SCroll reveal entra en conficto con el buscador (Si no esta revelado no los busca)
     ->REGEX filtro buscar para las tildes
     ->Agregar Favicon
