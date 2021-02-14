@@ -12,6 +12,7 @@ Creando un scraper para poder leer cualquier url de cualquier periodico e intent
     ->Crear una base de datos basica
     ->Tiene que actualizarse por cada periodico por separado. Colocar fecha de actualizacion por separado
     ->Agregar Logos para cada periodico. Logos locales, tambien sus nombres o nicks
+    ->REGEX filtro buscar para las tildes
 
 #Dones:
     14/02/2021

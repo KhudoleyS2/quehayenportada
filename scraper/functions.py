@@ -34,40 +34,11 @@ def buscar_imagenes_path(string_url):
             lista_img = soup.article.find_all('img',src=True)
     
 
-
-
-
-    # # Filtrar y buscar las imagenes
-    # # Si el html tiene <body>
-    # if soup.body:
-
-    #     # Si tiene <main>
-    #     if soup.body.main:
-
-    #         if soup.body.main.article:
-    #             lista_img = soup.body.main.article.find_all('img',src=True)
-    #         else:
-    #             lista_img = soup.body.main.find_all('img',src=True)
-                
-    #     # Si NO tiene <main>
-    #     else:
-    #         if soup.body.article:
-    #             lista_img = soup.body.article.find_all('img',src=True)
-    #         else:
-    #             lista_img = soup.body.find_all('img',src=True)
-
-    # # Si el HTML no tiene <body>
-    # else:
-    #     lista_img = soup.find_all('img',src=True)
-
-
-
-
-
     # En la lista de imagenes sacar sus src
     img_path_returned = None
     if len(lista_img) == 0:
-        print ('No se han encontrado imagenes')
+        # print ('No se han encontrado imagenes')
+        pass
 
     for i in lista_img:
         img_path = i['src']
@@ -76,7 +47,7 @@ def buscar_imagenes_path(string_url):
                 img_path_returned = img_path
                 break
     
-    print ('URL_IMG: ',img_path_returned)
+    # print ('URL_IMG: ',img_path_returned)
     return img_path_returned
 
 

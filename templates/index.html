@@ -7,14 +7,18 @@
 
     <div id="carouselExampleControls" class="carousel slide div-carousel mx-auto w-75" data-bs-ride="carousel">
         <div class="carousel-inner">
-            {% for valor in data%}
+            {% for noticia in data%}
             <div class="carousel-item bg-white text-center {% if loop.index==1 %}active{%endif%}">
                 <div class="div-content bg-dark">
-                    <img src="{{url_for('static',filename='img/question-mark.svg')}}" class="d-block w-100" alt="question-mark">
+                    {% if noticia[4] %}
+                    <img src="{{noticia[4]}}" class="d-block w-100" alt="question-mark">
+                    {% else %}
+                    <img src="{{url_for('static',filename='img/logos/'+noticia[3])}}" class="d-block w-100" alt="question-mark">
+                    {% endif %}
                     <div class="articulo-texto w-50">
-                        <a href="{{valor.url_base}}"><h2>{{valor.titulo}}</h2></a>
-                        <p>{{valor.texto}}</p>
-                        <a href="{{valor.url}}" class="btn btn-outline-light">Ver noticia</a>
+                        <a href="{{noticia[1]}}"><h2>{{noticia[0]}}</h2></a>
+                        <p>{{noticia[6]}}</p>
+                        <a href="{{noticia[2]}}" class="btn btn-outline-light">Ver noticia</a>
                     </div>
                 </div>
             </div>
@@ -44,10 +48,13 @@
     <div class="w-75 my-5 mx-auto div-grid">
         {% for noticia in data%}
         <div class="card text-white bg-secondary text-start shadow"> 
+            <img src="{{url_for('static',filename='img/logos/'+noticia[3])}}" alt="..." class="card-img-top bg-white">
             <div class="card-body">
-                <h5 class="card-title">{{noticia.titulo}}</h5>
-                <p class="card-text">{{noticia.texto}}</p>
-                <a href="{{noticia.url}}" class="btn btn-outline-light">Ver noticia</a>            
+                <h5>{{noticia[0]}}</h5>
+                <!-- <span><small>{{noticia[5]}}</small></span> -->
+                <p class="card-text">{{noticia[6]}}</p>
+                <p><small>Actualizado: {{noticia[7]}}</small></p>
+                <a href="{{noticia.url}}" class="btn btn-outline-light">Ver noticia</a>          
             </div>
         </div>
         {% endfor %}

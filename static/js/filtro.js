@@ -9,7 +9,7 @@ function filtrar(){
         // Tarjeta
         let card = arrayCards[i]
         // Iterar sobre el body de la tarjeta
-        const hijosCard = arrayCards[i].children[0];
+        const hijosCard = arrayCards[i].children[1];
         // Sacar el titulo y descripcion
         const titulo = hijosCard.children[0].innerText.toLowerCase();
         const descripcion = hijosCard.children[1].innerText.toLowerCase();
