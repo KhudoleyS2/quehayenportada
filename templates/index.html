@@ -1,0 +1,102 @@
+{% extends 'base_layout.html'%}
+
+{% block content%}
+<div class="mx-auto text-center">
+    <h1 class="display-1 my-4 mb-5">Python Scraper de Noticias</h1>
+    
+
+    <div id="carouselExampleControls" class="carousel slide div-carousel mx-auto w-75" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for valor in data%}
+            <div class="carousel-item bg-white text-center {% if loop.index==1 %}active{%endif%}">
+                <div class="div-content bg-dark">
+                    <img src="{{url_for('static',filename='img/question-mark.svg')}}" class="d-block w-100" alt="question-mark">
+                    <div class="articulo-texto w-50">
+                        <a href="{{valor.url_base}}"><h2>{{valor.titulo}}</h2></a>
+                        <p>{{valor.texto}}</p>
+                        <a href="{{valor.url}}" class="btn btn-outline-light">Ver noticia</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        </div>
+    </div>
+    <small class="text-muted">Ultima vez actualizado: MANUAL</small>
+
+    <hr class="w-50 my-5 mx-auto">
+
+    <div class="mb-3 w-50 my-3 mx-auto">
+        <label for="input-filtro" class="form-label">Buscar</label>
+        <input id="input-filtro" class="form-control">
+        <div class="form-text">Filtrado por el nombre o contenido</div>
+    </div>
+
+
+    <div class="w-75 my-5 mx-auto div-grid">
+        {% for noticia in data%}
+        <div class="card text-white bg-secondary text-start shadow"> 
+            <div class="card-body">
+                <h5 class="card-title">{{noticia.titulo}}</h5>
+                <p class="card-text">{{noticia.texto}}</p>
+                <a href="{{noticia.url}}" class="btn btn-outline-light">Ver noticia</a>            
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+
+
+
+
+
+    <hr class="w-50 my-5 mx-auto">
+
+    <div class="w-75 my-5 mx-auto ">
+        <div class="row">
+            <div class="col-sm text-start">
+                <h5 class="text-underline">Descripción proyecto</h5>
+                <p>Proyecto de una página web de noticias que mantiene su contenido actualizado automáticamente por medio de un web scraper propio sin necesidad de mantenimiento humano.</p>
+                <p>El web scraper ha sido escrito con Python usando la librería Beautiful Soup que analiza la estructura HTML de ciertas páginas web de periódicos nacionales y extrae la noticia en portada actuales.</p>
+                <p>La pagina web esta desarrollada integramente con el framework Flask y desplegado en la plataforma de Heroku. A su vez el servidor ejecuta periodicamente (cada 2h) el script del scraper para recopilar información y guardarlo en una base de datos SQLite local</p>
+                
+            </div>
+            <div class="col-sm text-start">
+                <h5 class="text-underline">Tecnologías</h5>
+                <ul>
+                    <li>Flask</li>
+                    <li>Python / Beautiful Soup</li>
+                    <li>SQLite3</li>
+                    <li>Bootstrap</li>
+                    <li>Heroku</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr class="w-50 my-5 mx-auto">
+
+    <div class="w-75 mx-auto text-start">
+        <h5 class="text-center mb-3">¿Que es <strong>Web Scraping</strong>?</h5>
+        <p>Web scraping o raspado web, es una técnica utilizada mediante programas de software para extraer información de sitios web.1​ Usualmente, estos programas simulan la navegación de un humano en la World Wide Web ya sea utilizando el protocolo HTTP manualmente, o incrustando un navegador en una aplicación.</p>
+        <p>El web scraping está muy relacionado con la indexación de la web, la cual indexa la información de la web utilizando un robot y es una técnica universal adoptada por la mayoría de los motores de búsqueda. Sin embargo, el web scraping se enfoca más en la transformación de datos sin estructura en la web (como el formato HTML) en datos estructurados que pueden ser almacenados y analizados en una base de datos central, en una hoja de cálculo o en alguna otra fuente de almacenamiento. Alguno de los usos del web scraping son la comparación de precios en tiendas, la monitorización de datos relacionados con el clima de cierta región, la detección de cambios en sitios webs y la integración de datos en sitios webs. También es utilizado para obtener información relevante de un sitio a través de los rich snippets.</p>
+        <div class="text-center">
+            <a href="https://es.wikipedia.org/wiki/Web_scraping" class="btn btn-secondary">Más información</a>
+        </div>
+        
+    </div>
+    
+
+    <script src="{{url_for('static',filename='js/filtro.js')}}"></script>
+
+</div>
+{% endblock %}
