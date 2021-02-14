@@ -11,9 +11,9 @@ cnx = sqlite3.connect('sqlite.db')
 try:
     cursor = cnx.cursor()
     cursor.execute('SELECT * FROM periodicos')
-    datos =  cursor.fetchall()
+    datos_db =  cursor.fetchall()
     # lista de todas las URLS
-    urls = [d[1] for d in datos]
+    urls = [d[1] for d in datos_db]
 
 except Exception as err:
     print ('ERROR con la conexion: ',err)
@@ -21,6 +21,10 @@ finally:
     cnx.close()
 
 
+
+print (datos_db)
+for d in datos_db:
+    print (d)
 
 
 
@@ -206,8 +210,17 @@ datos_insert_sql = []
  # Transformar diccionario a una tupla y agregar a la lista de datos para insertar por SQL
 for i in datos_export:
     values = (i['url_noticia'],i['external_img_path'],i['titulo'],i['texto'],i['fecha'],i['url'])
-    datos_insert_sql.append(values)
 
+    yaExisteTexto = False
+    scraper_texto = values[3]
+    for query in datos_db:
+        query_texto = query[6]
+        if query_texto == scraper_texto:
+            yaExisteTexto = True
+            break
+
+    if yaExisteTexto == False:
+        datos_insert_sql.append(values)
 
 
 # Conexion a la base de datos.

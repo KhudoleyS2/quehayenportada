@@ -41,7 +41,7 @@
 
     <!-- Filtro -->
 
-    <div class="mb-3 w-50 my-3 mx-auto">
+    <div class="mb-3 w-75 my-3 mx-auto">
         <label for="input-filtro" class="form-label">Buscar</label>
         <input id="input-filtro" class="form-control">
         <div class="form-text">Filtrado por el nombre o contenido</div>
@@ -50,13 +50,13 @@
 
     <div class="w-75 my-5 mx-auto div-grid">
         {% for noticia in data%}
-        <div class="div-grid-card card shadow border rounded p-2 pb-5"> 
+        <div class="div-grid-card card shadow border rounded p-3 pb-5 pt-0"> 
             <a href="{{noticia[1]}}"><img src="{{url_for('static',filename='img/logos/'+noticia[3])}}" alt="..." ></a>
             <div class="div-grid-card-content">
                 <div>
                     <h5>{{noticia[0]}}</h5>
-                    <div><small>Actualizado: {{noticia[7]}}</small></div>
-                    <p>{{noticia[6]}}</p>
+                    <div><small class="fw-light">Actualizado: {{noticia[7]}}</small></div>
+                    <p class="fs-5">{{noticia[6]}}</p>
                     
                 </div>
                 <div>
@@ -112,6 +112,8 @@
     
 
     <script src="{{url_for('static',filename='js/filtro.js')}}"></script>
+    <script src="{{url_for('static',filename='js/scrollReveal.js')}}"></script>
+
 
 </div>
 {% endblock %}

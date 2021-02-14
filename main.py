@@ -30,7 +30,7 @@ def close_connection(exception):
 @app.route('/')
 def index():
     cursor = get_db().cursor()
-    cursor.execute('SELECT * FROM periodicos')
+    cursor.execute('SELECT * FROM periodicos ORDER BY fecha DESC')
     data = cursor.fetchall()
     
     return render_template('index.html',data=data)
