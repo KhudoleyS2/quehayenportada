@@ -91,7 +91,7 @@ urls = [
 
 
 # urls = [
-#     'https://www.lavozdealmeria.com/'
+#     'https://www.elpuntavui.cat/barcelona.html'
 # ]
 
 
