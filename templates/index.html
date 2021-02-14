@@ -2,10 +2,10 @@
 
 {% block content%}
 <div class="mx-auto text-center">
-    <h1 class="display-1 my-4 mb-5">Python Scraper de Noticias</h1>
+    <h1 class="display-1 my-4 mb-5">Python Scraper</h1>
     
-
-    <div id="carouselExampleControls" class="carousel slide div-carousel mx-auto w-75" data-bs-ride="carousel">
+    <!-- Carousel -->
+    <!-- <div id="carouselExampleControls" class="carousel slide div-carousel mx-auto w-75" data-bs-ride="carousel">
         <div class="carousel-inner">
             {% for noticia in data%}
             <div class="carousel-item bg-white text-center {% if loop.index==1 %}active{%endif%}">
@@ -34,9 +34,12 @@
         </button>
         </div>
     </div>
-    <small class="text-muted">Ultima vez actualizado: MANUAL</small>
+    <small class="text-muted">Ultima vez actualizado: MANUAL</small> -->
+
 
     <hr class="w-50 my-5 mx-auto">
+
+    <!-- Filtro -->
 
     <div class="mb-3 w-50 my-3 mx-auto">
         <label for="input-filtro" class="form-label">Buscar</label>
@@ -47,14 +50,19 @@
 
     <div class="w-75 my-5 mx-auto div-grid">
         {% for noticia in data%}
-        <div class="card text-white bg-secondary text-start shadow"> 
-            <img src="{{url_for('static',filename='img/logos/'+noticia[3])}}" alt="..." class="card-img-top bg-white">
-            <div class="card-body">
-                <h5>{{noticia[0]}}</h5>
-                <!-- <span><small>{{noticia[5]}}</small></span> -->
-                <p class="card-text">{{noticia[6]}}</p>
-                <p><small>Actualizado: {{noticia[7]}}</small></p>
-                <a href="{{noticia.url}}" class="btn btn-outline-light">Ver noticia</a>          
+        <div class="div-grid-card card shadow border rounded p-2 pb-5"> 
+            <a href="{{noticia[1]}}"><img src="{{url_for('static',filename='img/logos/'+noticia[3])}}" alt="..." ></a>
+            <div class="div-grid-card-content">
+                <div>
+                    <h5>{{noticia[0]}}</h5>
+                    <div><small>Actualizado: {{noticia[7]}}</small></div>
+                    <p>{{noticia[6]}}</p>
+                    
+                </div>
+                <div>
+                    <a href="{{noticia[2]}}" class="btn btn-outline-dark">Ver noticia</a> 
+                </div>
+                         
             </div>
         </div>
         {% endfor %}

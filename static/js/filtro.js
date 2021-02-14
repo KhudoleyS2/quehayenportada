@@ -11,12 +11,12 @@ function filtrar(){
         // Iterar sobre el body de la tarjeta
         const hijosCard = arrayCards[i].children[1];
         // Sacar el titulo y descripcion
-        const titulo = hijosCard.children[0].innerText.toLowerCase();
-        const descripcion = hijosCard.children[1].innerText.toLowerCase();
+        const titulo = hijosCard.getElementsByTagName('h5')[0].innerText.toLowerCase()
+        // const titulo = hijosCard.children[0].innerText.toLowerCase();
+        // const descripcion = hijosCard.children[1].innerText.toLowerCase();
         if (!titulo.includes(valueFiltro)){
             card.style.display = "none";
         }else{
-            console.log('No incluye')
             card.style.display = "block"
         }
     }
