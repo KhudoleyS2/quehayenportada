@@ -7,7 +7,7 @@ import datetime
 import functions
 
 # Conexion a la base de datos.
-cnx = sqlite3.connect('sqlite.db')
+cnx = sqlite3.connect('./sqlite.db')
 try:
     cursor = cnx.cursor()
     cursor.execute('SELECT * FROM periodicos')
@@ -36,6 +36,7 @@ print ('\n__________________EJECUTANDO SCRAPER________________\n')
 datos_export = []
 #Iterar URLs
 for url in urls:
+    print (url)
     datos = {
         'url':url,
         'url_noticia':None,
@@ -89,6 +90,8 @@ for url in urls:
                 datos['texto'] = texto
                 print ('\n\n')
                 datos_export.append(datos)
+                for k,v in datos.items():
+                    print(k,v)
                 continue
 
             #<h2>
@@ -109,6 +112,8 @@ for url in urls:
                     datos['texto'] = texto
                     print ('\n\n')
                     datos_export.append(datos)
+                    for k,v in datos.items():
+                        print(k,v)
                     continue
                 #<h3><a>
                 else:
@@ -117,6 +122,8 @@ for url in urls:
                     datos['texto'] = texto
                     print ('\n\n')
                     datos_export.append(datos)
+                    for k,v in datos.items():
+                        print(k,v)
                     continue
 
 
@@ -133,6 +140,8 @@ for url in urls:
                 datos['texto'] = texto
                 print ('\n\n')
                 datos_export.append(datos)
+                for k,v in datos.items():
+                    print(k,v)
                 continue            
 
 
@@ -180,6 +189,8 @@ for url in urls:
                 datos['texto'] = texto
                 print('\n\n')
                 datos_export.append(datos)
+                for k,v in datos.items():
+                    print(k,v)
                 continue
             # <h2>
             if soup.body.h2:
@@ -193,8 +204,9 @@ for url in urls:
                 datos['texto'] = texto
                 print('\n\n')
                 datos_export.append(datos)
+                for k,v in datos.items():
+                    print(k,v)
                 continue
-
         
     except Exception as err:
 
@@ -203,7 +215,8 @@ for url in urls:
         pass
 
 
-    
+print ('\n')
+print (datos_export)
 
 datos_insert_sql = []
 
@@ -224,7 +237,7 @@ for i in datos_export:
 
 
 # Conexion a la base de datos.
-cnx = sqlite3.connect('sqlite.db')
+cnx = sqlite3.connect('./sqlite.db')
 try:
     cursor = cnx.cursor()
     sql_query = 'UPDATE periodicos SET path_noticia = ?, external_img_path = ?, titulo = ?, texto = ?, fecha = ? WHERE path = ?'
@@ -234,4 +247,4 @@ try:
 except Exception as err:
     print ('ERROR con la conexion: ',err)
 finally:
-    cnx.close()
+    cnx.close() 
