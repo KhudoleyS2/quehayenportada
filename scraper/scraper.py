@@ -7,7 +7,7 @@ import datetime
 import functions
 
 # Conexion a la base de datos.
-cnx = sqlite3.connect('./sqlite.db')
+cnx = sqlite3.connect('/home/ubuntu/quehayenportada/scraper/scraper.py')
 try:
     cursor = cnx.cursor()
     cursor.execute('SELECT * FROM periodicos')
@@ -237,7 +237,7 @@ for i in datos_export:
 
 
 # Conexion a la base de datos.
-cnx = sqlite3.connect('./sqlite.db')
+cnx = sqlite3.connect('/home/ubuntu/quehayenportada/scraper/scraper.py')
 try:
     cursor = cnx.cursor()
     sql_query = 'UPDATE periodicos SET path_noticia = ?, external_img_path = ?, titulo = ?, texto = ?, fecha = ? WHERE path = ?'
